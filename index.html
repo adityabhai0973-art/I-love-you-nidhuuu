@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#160817">
+<title>For Nidhi ❤️</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+ background:#130918;
+ color:white;
+ font-family:Georgia,serif;
+ overflow:hidden;
+}
+
+#stars{
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ background:
+ radial-gradient(circle at 20% 20%,#76224f55,transparent 40%),
+ radial-gradient(circle at 80% 80%,#50165c55,transparent 40%);
+ z-index:-1;
+}
+
+.star{
+ position:absolute;
+ background:white;
+ width:2px;height:2px;
+ border-radius:50%;
+ animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+ to{opacity:.2;transform:scale(1.8)}
+}
+
+#app{
+ width:100%;
+ min-height:100svh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:12px;
+}
+
+.page{
+ display:none;
+ width:min(650px,100%);
+ height:min(780px,94svh);
+ min-height:500px;
+ padding:25px 20px;
+ border:1px solid #ff8bb744;
+ border-radius:27px;
+ background:linear-gradient(145deg,#32142bdf,#180d24f5);
+ box-shadow:0 0 55px #ff3e8922;
+ text-align:center;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ position:relative;
+ overflow:hidden;
+ animation:pageIn .5s ease;
+}
+
+.page.active{display:flex}
+
+@keyframes pageIn{
+ from{opacity:0;transform:scale(.96) translateX(20px)}
+ to{opacity:1;transform:scale(1) translateX(0)}
+}
+
+.small{
+ color:#ff9dc6;
+ font:11px Arial;
+ letter-spacing:4px;
+ text-transform:uppercase;
+ margin-bottom:20px;
+}
+
+h1{
+ font-size:clamp(38px,9vw,65px);
+ color:#ffb5d5;
+ line-height:1.1;
+ text-shadow:0 0 25px #ff4d9855;
+ margin-bottom:18px;
+}
+
+h2{
+ font-size:clamp(28px,7vw,43px);
+ color:#ffacd0;
+ margin-bottom:18px;
+}
+
+p{
+ color:#edc7d9;
+ font:14px/1.8 Arial,sans-serif;
+ max-width:450px;
+ margin:0 auto 22px;
+}
+
+.heart{
+ font-size:85px;
+ margin:12px 0 25px;
+ animation:beat 1.5s infinite;
+ filter:drop-shadow(0 0 20px #ff408b);
+}
+
+@keyframes beat{
+ 50%{transform:scale(1.15)}
+}
+
+.btn{
+ padding:13px 25px;
+ border:0;
+ border-radius:40px;
+ background:linear-gradient(110deg,#ff82b5,#d82b79);
+ color:white;
+ font-size:12px;
+ letter-spacing:1px;
+ cursor:pointer;
+ box-shadow:0 5px 25px #ff398b44;
+}
+
+.btn:active{transform:scale(.96)}
+
+.nav{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ gap:12px;
+ margin-top:25px;
+ flex-wrap:wrap;
+}
+
+.back{
+ background:#ffffff15;
+ border:1px solid #ff8bb766;
+}
+
+.page-number{
+ color:#dba5c1;
+ font:12px Arial;
+ margin-top:15px;
+}
+
+/* 3D HEART */
+
+.heart3d{
+ width:75px;
+ height:75px;
+ background:linear-gradient(135deg,#ffb0d2,#ff287d);
+ position:relative;
+ transform:rotate(-45deg);
+ margin:45px 0;
+ animation:beat 1.5s infinite;
+ box-shadow:0 0 40px #ff398b;
+}
+
+.heart3d:before,.heart3d:after{
+ content:"";
+ width:75px;height:75px;
+ background:inherit;
+ border-radius:50%;
+ position:absolute;
+}
+
+.heart3d:before{top:-38px;left:0}
+.heart3d:after{left:38px;top:0}
+
+/* MESSAGE PAGES */
+
+.message-grid{
+ width:100%;
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:7px;
+ margin:10px 0;
+}
+
+.message{
+ padding:10px 4px;
+ background:#ffffff0d;
+ border:1px solid #ff9fc42c;
+ border-radius:10px;
+ color:#ffd7e8;
+ font:11px Arial;
+}
+
+.message span{
+ display:block;
+ color:#ff8ab9;
+ font-size:9px;
+ margin-bottom:5px;
+}
+
+/* GIFT */
+
+.gift{
+ font-size:95px;
+ margin:20px;
+ cursor:pointer;
+ animation:beat 2s infinite;
+}
+
+.surprise{
+ display:none;
+ padding:15px;
+ background:#ff78ae15;
+ border:1px solid #ff8bb755;
+ border-radius:15px;
+ max-height:220px;
+ overflow:auto;
+}
+
+.surprise.show{display:block}
+
+/* MUSIC */
+
+.music{
+ position:fixed;
+ top:12px;
+ right:12px;
+ z-index:10;
+ border:1px solid #ff8bb755;
+ border-radius:30px;
+ padding:10px 14px;
+ background:#301329;
+ color:white;
+ font-size:11px;
+ cursor:pointer;
+}
+
+@media(max-height:650px){
+ .page{height:94svh;min-height:0;padding:15px}
+ .heart{font-size:55px;margin:5px}
+ .heart3d{margin:30px 0}
+ h1{font-size:38px}
+ p{font-size:12px;margin-bottom:12px}
+ .message{padding:6px 3px;font-size:10px}
+ .message-grid{gap:5px;margin:5px 0}
+ .nav{margin-top:12px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<button class="music" onclick="musicToggle()" id="musicBtn">
+♫ Play Music
+</button>
+
+<div id="app">
+
+<!-- PAGE 1 -->
+
+<section class="page active" id="p1">
+
+<div class="small">A special universe for someone special</div>
+
+<div class="heart">💗</div>
+
+<h1>For You,<br>Nidhi</h1>
+
+<p>
+I made something special for you.
+A little world filled with love,
+memories and a thousand little reminders.
+</p>
+
+<button class="btn" onclick="go(2)">
+OPEN YOUR UNIVERSE ♡
+</button>
+
+<div class="page-number">PAGE 01</div>
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="page" id="p2">
+
+<div class="small">Something from my heart</div>
+
+<div class="heart3d"></div>
+
+<h2>You're Special</h2>
+
+<p>
+Out of all the people in this world,
+you have a special place in my little universe.
+
+Thank you for being a part of my life.
+</p>
+
+<div class="nav">
+<button class="btn back" onclick="go(1)">← BACK</button>
+<button class="btn" onclick="go(3)">NEXT →</button>
+</div>
+
+<div class="page-number">PAGE 02</div>
+
+</section>
+
+<!-- PAGE 3: MESSAGE PAGINATION -->
+
+<section class="page" id="p3">
+
+<div class="small">A thousand little reminders</div>
+
+<h2>1000 Times I Love You</h2>
+
+<p id="messageIntro">
+Every single message is for you, Nidhuuu ❤️
+</p>
+
+<div class="message-grid" id="messageGrid"></div>
+
+<div class="page-number" id="messagePage">
+MESSAGES 1–20 / 1000
+</div>
+
+<div class="nav">
+<button class="btn back" onclick="messageBack()">← BACK</button>
+<button class="btn" onclick="messageNext()">NEXT →</button>
+</div>
+
+<div class="page-number">MAIN PAGE 03</div>
+
+</section>
+
+<!-- PAGE 4 -->
+
+<section class="page" id="p4">
+
+<div class="small">A little surprise</div>
+
+<h2>Something for You 🎁</h2>
+
+<div class="gift" onclick="openGift()">🎁</div>
+
+<p>
+There's a little surprise waiting inside.
+Tap the gift to open it.
+</p>
+
+<div class="surprise" id="surprise">
+<h2>For My Nidhuuu ❤️</h2>
+<p>
+You deserve happiness, kindness,
+care and countless reasons to smile.
+
+Thank you for your beautiful presence
+in my life.
+
+I LOVE YOUUU NIDHUUU! 💗
+</p>
+</div>
+
+<div class="nav">
+<button class="btn back" onclick="go(3)">← BACK</button>
+<button class="btn" onclick="go(5)">NEXT →</button>
+</div>
+
+<div class="page-number">PAGE 04</div>
+
+</section>
+
+<!-- PAGE 5 -->
+
+<section class="page" id="p5">
+
+<div class="small">One last thing</div>
+
+<div class="heart">💕</div>
+
+<h1>Beyond<br>1000...</h1>
+
+<p>
+A thousand messages can fill a screen,
+but what matters most is caring,
+understanding and respecting each other.
+
+Thank you for being a special part
+of my story, Nidhi.
+
+I LOVE YOU SO MUCH! ❤️
+</p>
+
+<div class="nav">
+<button class="btn back" onclick="go(4)">← BACK</button>
+<button class="btn" onclick="go(1)">START AGAIN ↻</button>
+</div>
+
+<div class="page-number">PAGE 05</div>
+
+</section>
+
+</div>
+
+<script>
+
+/* STARS */
+
+const stars=document.getElementById("stars");
+
+for(let i=0;i<100;i++){
+ const s=document.createElement("div");
+ s.className="star";
+ s.style.left=Math.random()*100+"%";
+ s.style.top=Math.random()*100+"%";
+ s.style.animationDelay=Math.random()*3+"s";
+ stars.appendChild(s);
+}
+
+/* MAIN PAGE NAVIGATION */
+
+function go(n){
+
+ document.querySelectorAll(".page").forEach(p=>{
+  p.classList.remove("active");
+ });
+
+ const next=document.getElementById("p"+n);
+ next.classList.add("active");
+
+}
+
+/* 1000 MESSAGES: 20 PER PAGE */
+
+let currentMessagePage=0;
+
+function renderMessages(){
+
+ const grid=document.getElementById("messageGrid");
+ grid.innerHTML="";
+
+ const start=currentMessagePage*20+1;
+ const end=Math.min(start+19,1000);
+
+ for(let i=start;i<=end;i++){
+
+  const card=document.createElement("div");
+  card.className="message";
+
+  const label=document.createElement("span");
+  label.textContent="MESSAGE "+i;
+
+  const text=document.createElement("div");
+  text.textContent="I LOVE YOU NIDHUUU ❤️";
+
+  card.appendChild(label);
+  card.appendChild(text);
+
+  grid.appendChild(card);
+
+ }
+
+ document.getElementById("messagePage").textContent=
+ "MESSAGES "+start+"–"+end+" / 1000";
+
+}
+
+function messageNext(){
+
+ if(currentMessagePage<49){
+  currentMessagePage++;
+  renderMessages();
+ }else{
+  go(4);
+ }
+
+}
+
+function messageBack(){
+
+ if(currentMessagePage>0){
+  currentMessagePage--;
+  renderMessages();
+ }else{
+  go(2);
+ }
+
+}
+
+renderMessages();
+
+/* GIFT */
+
+function openGift(){
+ document.getElementById("surprise").classList.add("show");
+ document.querySelector(".gift").textContent="💝";
+}
+
+/* ORIGINAL SOFT INSTRUMENTAL */
+
+let ctx=null;
+let playing=false;
+let timer=null;
+let chordIndex=0;
+
+const chords=[
+ [261.63,329.63,392],
+ [220,261.63,329.63],
+ [174.61,220,261.63],
+ [196,246.94,293.66]
+];
+
+function playChord(){
+
+ const now=ctx.currentTime;
+
+ chords[chordIndex%4].forEach((freq,i)=>{
+
+  const osc=ctx.createOscillator();
+  const gain=ctx.createGain();
+
+  osc.type="sine";
+  osc.frequency.value=freq;
+
+  gain.gain.setValueAtTime(.0001,now);
+  gain.gain.linearRampToValueAtTime(i===0?.035:.018,now+1);
+  gain.gain.exponentialRampToValueAtTime(.0001,now+3.5);
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start(now);
+  osc.stop(now+3.6);
+
+ });
+
+ chordIndex++;
+
+}
+
+async function musicToggle(){
+
+ const btn=document.getElementById("musicBtn");
+
+ if(!ctx){
+  const AudioCtx=window.AudioContext||window.webkitAudioContext;
+  if(!AudioCtx){
+   btn.textContent="Music unavailable";
+   return;
+  }
+  ctx=new AudioCtx();
+ }
+
+ if(ctx.state==="suspended")await ctx.resume();
+
+ if(!playing){
+
+  playing=true;
+  playChord();
+  timer=setInterval(playChord,3500);
+  btn.textContent="♫ Pause Music";
+
+ }else{
+
+  playing=false;
+  clearInterval(timer);
+  await ctx.suspend();
+  btn.textContent="♫ Play Music";
+
+ }
+
+}
+
+</script>
+
+</body>
+</html>
